@@ -1,0 +1,76 @@
+-- Drop tables
+DROP TABLE national_parks;
+DROP TABLE trails;
+DROP TABLE trail_stats;
+DROP TABLE species_stats;
+DROP TABLE parks_trails;
+
+
+-- Create tables
+CREATE TABLE national_parks (
+	national_park VARCHAR(366),
+	park_id	VARCHAR(366) PRIMARY KEY,
+	state VARCHAR(366),
+	visitors int,
+	acres int,
+	lat int,
+	long int,
+);
+
+CREATE TABLE trails (
+	trail_id VARCHAR(366) PRIMARY KEY,
+	trail_name VARCHAR(366),
+	national_park VARCHAR(366),
+	state VARCHAR(366),
+	trailhead_lat int,
+	trailhead_long int,
+);
+
+CREATE TABLE trail_stats (
+	trail_id VARCHAR(366) PRIMARY KEY,
+	park_id	VARCHAR(366),
+	popularity int,
+	length int,
+	diffiulty int,
+	usage int,
+	elevation int,
+	num_reviews int,
+	route_type VARCHAR(366),
+	rating int,
+);
+
+CREATE TABLE species_stats (
+	animal_name VARCHAR(366),
+	national_park VARCHAR(366),
+	category VARCHAR(366),
+	abundance VARCHAR(366) IS NOT NULL,
+	conservation_status VARCHAR(366) IS NOT NULL,
+);
+
+CREATE TABLE parks_trails (
+	trail_id VARCHAR(366),
+	park_id	VARCHAR(366),
+	
+);
+
+____EXAMPLE BELOW____
+
+-- Import csv files before adding FKs
+
+ALTER TABLE Employees ADD CONSTRAINT fk_Employees_emp_title_id FOREIGN KEY(emp_title_id)
+REFERENCES Titles (title_id);
+
+ALTER TABLE DeptManager ADD CONSTRAINT fk_DeptManager_dept_no FOREIGN KEY(dept_no)
+REFERENCES Departments (dept_no);
+
+ALTER TABLE DeptManager ADD CONSTRAINT fk_DeptManager_emp_no FOREIGN KEY(emp_no)
+REFERENCES Employees (emp_no);
+
+ALTER TABLE DeptEmp ADD CONSTRAINT fk_DeptEmp_emp_no FOREIGN KEY(emp_no)
+REFERENCES Employees (emp_no);
+
+ALTER TABLE DeptEmp ADD CONSTRAINT fk_DeptEmp_dept_no FOREIGN KEY(dept_no)
+REFERENCES Departments (dept_no);
+
+ALTER TABLE Salaries ADD CONSTRAINT fk_Salaries_emp_no FOREIGN KEY(emp_no)
+REFERENCES Employees (emp_no);

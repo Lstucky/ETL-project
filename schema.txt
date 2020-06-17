@@ -1,3 +1,4 @@
+
 -- Drop tables
 DROP TABLE national_parks;
 DROP TABLE trails;
@@ -8,48 +9,51 @@ DROP TABLE parks_trails;
 
 -- Create tables
 CREATE TABLE national_parks (
+	park_code VARCHAR(366) PRIMARY KEY,
 	national_park VARCHAR(366),
-	park_id	VARCHAR(366) PRIMARY KEY,
 	state VARCHAR(366),
-	visitors int,
-	acres int,
-	lat int,
-	long int,
+	acres INT,
+	latitude NUMERIC,
+	longitude NUMERIC,
+	visitors NUMERIC
 );
 
+SELECT * FROM national_parks;
+
 CREATE TABLE trails (
-	trail_id VARCHAR(366) PRIMARY KEY,
+	trail_id INT PRIMARY KEY,
 	trail_name VARCHAR(366),
 	national_park VARCHAR(366),
 	state VARCHAR(366),
-	trailhead_lat int,
-	trailhead_long int,
+	trailhead_lat NUMERIC,
+	trailhead_long NUMERIC
 );
 
 CREATE TABLE trail_stats (
+	park_code VARCHAR(366),
 	trail_id VARCHAR(366) PRIMARY KEY,
-	park_id	VARCHAR(366),
 	popularity int,
 	length int,
 	diffiulty int,
-	usage int,
 	elevation int,
 	num_reviews int,
 	route_type VARCHAR(366),
-	rating int,
+	rating int
 );
 
 CREATE TABLE species_stats (
-	animal_name VARCHAR(366),
 	national_park VARCHAR(366),
 	category VARCHAR(366),
-	abundance VARCHAR(366) IS NOT NULL,
-	conservation_status VARCHAR(366) IS NOT NULL,
+	animal_name VARCHAR(366),
+	abundance VARCHAR(366),
+	conservation_status VARCHAR(366)
 );
+
+SELECT * FROM species_stats;
 
 CREATE TABLE parks_trails (
 	trail_id VARCHAR(366),
-	park_id	VARCHAR(366),
+	park_code VARCHAR(366)
 	
 );
 

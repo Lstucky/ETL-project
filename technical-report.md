@@ -1,4 +1,4 @@
-## ETL-Preject Technical Report
+## ETL-Project Technical Report
 
 ### Overview
 
@@ -18,7 +18,7 @@ We cleaned and normalized our data so that we could merge them into meaningful t
 ### Procedures
 
 * **Extract**
-    *
+    * 
 
 
 * **Transform**

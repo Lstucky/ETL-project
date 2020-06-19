@@ -10,7 +10,7 @@ We cleaned and normalized our data so that we could merge them into meaningful t
 
 ### Sources
 
-* National Parks - 
+* National Parks - https://data.world/inform8n/us-national-parks-visitation-1904-2016-with-boundaries/workspace/file?filename=All+National+Parks+Visitation+1904-2016.csv
 * National Park Trails -  https://www.kaggle.com/planejane/national-park-trails
 * National Park Species - https://www.kaggle.com/nationalparkservice/park-biodiversity?select=parks.csv
 * National Park Visitations - https://data.world/inform8n/us-national-parks-visitation-1904-2016-with-boundaries/workspace/file?filename=All+National+Parks+Visitation+1904-2016.csv
@@ -18,7 +18,7 @@ We cleaned and normalized our data so that we could merge them into meaningful t
 ### Procedures
 
 * **Extract**
-    * Each csv file was read into a Pandas DataFrame in jupyter notebook
+    * Each csv file was read into a Pandas DataFrame in jupyter notebook.
 
 * **Transform**
     * We took only only the columns that were necessary and renamed the columns to that they were consistent across the datasets.

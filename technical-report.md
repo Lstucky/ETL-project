@@ -43,7 +43,7 @@ We cleaned and normalized our data so that we could merge them into meaningful t
     2. Run merging juypter notebook
     3. Create NationalParks dataframe in PostgeSQL
     4. Run schema to create tables
-    5. Import each datasets from the `Outputs` directory into each table
+    5. Import each datasets from the Outputs directory into each table
     6. Run SQL analysis
 
 ### Final Thoughts

@@ -30,15 +30,15 @@ CREATE TABLE trails (
 );
 
 CREATE TABLE trail_stats (
-	park_code VARCHAR(366),
+	park_code VARCHAR(366) NOT NULL,
 	trail_id VARCHAR(366) PRIMARY KEY,
-	popularity int,
-	length int,
-	diffiulty int,
-	elevation int,
-	num_reviews int,
+	popularity NUMERIC,
+	length NUMERIC,
+	elevation NUMERIC,
+	diffiulty NUMERIC,
 	route_type VARCHAR(366),
-	rating int
+	rating NUMERIC,
+	num_reviews NUMERIC
 );
 
 CREATE TABLE species_stats (

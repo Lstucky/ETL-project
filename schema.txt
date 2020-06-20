@@ -1,4 +1,3 @@
-
 -- Drop tables
 DROP TABLE national_parks;
 DROP TABLE trails;
@@ -18,10 +17,8 @@ CREATE TABLE national_parks (
 	visitors NUMERIC
 );
 
-SELECT * FROM national_parks;
-
 CREATE TABLE trails (
-	trail_id INT PRIMARY KEY,
+	trail_id VARCHAR(366) PRIMARY KEY,
 	trail_name VARCHAR(366),
 	national_park VARCHAR(366),
 	state VARCHAR(366),
@@ -35,13 +32,14 @@ CREATE TABLE trail_stats (
 	popularity NUMERIC,
 	length NUMERIC,
 	elevation NUMERIC,
-	diffiulty NUMERIC,
+	difficulty NUMERIC,
 	route_type VARCHAR(366),
 	rating NUMERIC,
 	num_reviews NUMERIC
 );
 
 CREATE TABLE species_stats (
+	park_code VARCHAR(366),
 	national_park VARCHAR(366),
 	category VARCHAR(366),
 	animal_name VARCHAR(366),
@@ -49,32 +47,38 @@ CREATE TABLE species_stats (
 	conservation_status VARCHAR(366)
 );
 
-SELECT * FROM species_stats;
-
 CREATE TABLE parks_trails (
 	trail_id VARCHAR(366),
 	park_code VARCHAR(366)
-	
 );
 
-____EXAMPLE BELOW____
+-- Check Tables
+SELECT * FROM national_parks;
+SELECT * FROM species_stats;
+SELECT * FROM trail_stats;
+SELECT * FROM trails;
 
--- Import csv files before adding FKs
 
-ALTER TABLE Employees ADD CONSTRAINT fk_Employees_emp_title_id FOREIGN KEY(emp_title_id)
-REFERENCES Titles (title_id);
 
-ALTER TABLE DeptManager ADD CONSTRAINT fk_DeptManager_dept_no FOREIGN KEY(dept_no)
-REFERENCES Departments (dept_no);
+-- Add Foreign Keys
+ALTER TABLE trail_stats ADD CONSTRAINT fk_trail_stats_trail_id FOREIGN KEY(trail_id)
+REFERENCES trails (trail_id);
 
-ALTER TABLE DeptManager ADD CONSTRAINT fk_DeptManager_emp_no FOREIGN KEY(emp_no)
-REFERENCES Employees (emp_no);
+ALTER TABLE trail_stats ADD CONSTRAINT fk_trail_stats_park_code FOREIGN KEY(park_code)
+REFERENCES national_parks (park_code);
 
-ALTER TABLE DeptEmp ADD CONSTRAINT fk_DeptEmp_emp_no FOREIGN KEY(emp_no)
-REFERENCES Employees (emp_no);
 
-ALTER TABLE DeptEmp ADD CONSTRAINT fk_DeptEmp_dept_no FOREIGN KEY(dept_no)
-REFERENCES Departments (dept_no);
 
-ALTER TABLE Salaries ADD CONSTRAINT fk_Salaries_emp_no FOREIGN KEY(emp_no)
-REFERENCES Employees (emp_no);
+-- Example queries
+-- "I want to see what trails have birds and difficulty level less than 3"
+SELECT species_stats.animal_name, trail_stats.park_code, trail_stats.trail_id
+FROM trail_stats
+INNER JOIN species_stats ON trail_stats.park_code=species_stats.park_code
+WHERE species_stats.category = 'Bird' AND trail_stats.difficulty <= 3 ;
+
+-- "Are there more trails in parks that have more acreage?"
+SELECT count(trails.trail_id) AS num_trails, national_parks.national_park, SUM(national_parks.acres) AS total_acres
+FROM national_parks
+INNER JOIN trails ON national_parks.national_park=trails.national_park
+GROUP BY national_parks.national_park
+ORDER BY total_acres;

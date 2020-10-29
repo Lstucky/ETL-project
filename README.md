@@ -10,6 +10,8 @@ To do this, we found a dataset that listed all National Parks, acreage, latitude
 
 We cleaned and normalized our data so that we could merge them into meaningful tables and load them into a SQL database.
 
+![trail-stats](Images/trail-stats-table.PNG)
+
 ### Sources
 
 * National Parks Acres - https://data.world/inform8n/us-national-parks-visitation-1904-2016-with-boundaries/workspace/file?filename=All+National+Parks+Visitation+1904-2016.csv
